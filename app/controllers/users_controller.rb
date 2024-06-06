@@ -1,9 +1,9 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
 
   # GET /users or /users.json
   def index
-    @microposts = Micropost.all
+    @users = User.all
   end
 
   # GET /users/1 or /users/1.json
@@ -12,7 +12,7 @@ class UserController < ApplicationController
 
   # GET /users/new
   def new
-    @micropost = Micropost.new
+    @user = User.new
   end
 
   # GET /users/1/edit
@@ -21,10 +21,10 @@ class UserController < ApplicationController
 
   # POST /users or /users.json
   def create
-    @micropost = Micropost.new(user_params)
+    @user = User.new(user_params)
 
     respond_to do |format|
-      if @micropost.save
+      if @user.save
         format.html { redirect_to user_url(@user), notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
@@ -37,7 +37,7 @@ class UserController < ApplicationController
   # PATCH/PUT /users/1 or /users/1.json
   def update
     respond_to do |format|
-      if @micropost.update(user_params)
+      if @user.update(user_params)
         format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -49,7 +49,7 @@ class UserController < ApplicationController
 
   # DELETE /users/1 or /users/1.json
   def destroy
-    @micropost.destroy
+    @user.destroy
 
     respond_to do |format|
       format.html { redirect_to users_url, notice: "User was successfully destroyed." }
@@ -60,7 +60,7 @@ class UserController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @micropost = Micropost.find(params[:id])
+      @user = User.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

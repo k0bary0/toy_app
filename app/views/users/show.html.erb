@@ -3,8 +3,8 @@
 <%= render @user %>
 
 <p>
-  <strong>Microposts</strong>
-  <%= @user.microposts.first.content %>
+  <strong>Fisrst Microposts:</strong>
+  <%= @user.microposts&.first&.content %>
 </p>
 
 <div>
